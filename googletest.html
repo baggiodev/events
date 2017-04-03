@@ -24,28 +24,18 @@
     <div id="map"></div>
     <div id="maindivevent"></div>
     <script>
+  var map;
   var ajaxcall;
-
+  var performerarray = [];
  function initMap(lat, lng) {
      var myLatLng = {
          lat: lat,
          lng: lng
      };
 
-     var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
          zoom: 10,
          center: myLatLng
-     });
-
-     var marker = new google.maps.Marker({
-         position: myLatLng,
-         map: map,
-         title: 'Hello World!'
-     });
-     var marker = new google.maps.Marker({
-         position: myLatLng,
-         map: map,
-         title: "testing"
      });
  }
  var userlat;
@@ -68,38 +58,73 @@
  }).done(function(response) {
      console.log(response);
      ajaxcall = response;
+     initMap(userlat,userlng);
      eventcall();
  });
  console.log(ajaxcall);
 
  function eventcall() {
- 	console.log(ajaxcall);
- 	// debugger;
+    console.log(ajaxcall);
+    // debugger;
      // makes a main div that needs to be appended to the page
      var mainDiv = $("<div>");
      for (var i = 0; i < ajaxcall.events.event.length; i++) {
+        var eventLatLng = {
+            lat: parseInt(ajaxcall.events.event[i].latitude),
+            lng: parseInt(ajaxcall.events.event[i].longitude)
+        }
+        var marker = new google.maps.Marker({
+            position: eventLatLng,
+            map: map,
+            title: ajaxcall.events.event[i].title
+        });
          var temp = $("<div>");// console.log(ajaxcall.events.event[i].title);
          temp.addClass("events");
          // makes a div inside the div for the title
          var title = $("<div>");
          var divtitle = ajaxcall.events.event[i].title;
-         title.text(divtitle);
-         mainDiv.append(title);
-         // grabs address and makes a div to put inside of maindiv
+         title.text("Event Title: "+divtitle);
+         temp.append(title);
+         // grabs address and makes a div to put inside of temp
          var address = $("<div>");
          var divaddress = ajaxcall.events.event[i].venue_address;
-         address.html(divaddress);
-         mainDiv.append(address);
+         address.html("Address: "+divaddress);
+         temp.append(address);
          var divperformer = $("<div>");
-         var performer = ajaxcall.events.event[i].performers.performer.name
-         if (ajaxcall.events.event[i].performers == null){
-         	console.log("it works");
-          performer = "N/A"
+         var performer
+         if (ajaxcall.events.event[i].performers){
+            console.log(i)
+            performer = ajaxcall.events.event[i].performers.performer
+            if(performer.name){
+                performer = performer.name
+                divperformer.html("Performer: "+performer);
+            }
+            console.log(performer);
+            if(Array.isArray(performer)){
+                console.log("test");
+                for (var i = 0; i < performer.length; i++) {
+                    performerarray.push("<p>Performer: "+performer[i].name+"</p>");
+                    
+                }
+                console.log(performerarray);
+                // divperformer.append("hahaha");
+                divperformer.append(performerarray);
+            }
      }
+     else {
+         performer = "Performer: N/A"
          divperformer.html(performer);
-         mainDiv.append(performer);
-         var button = $("<button>");
-         mainDiv.append(button);
+
+     }
+         // divperformer.html(performer);
+         temp.append(divperformer);
+         if(performer ==="Performer: N/A"){
+
+         }
+         else{var button = $("<button>Spotify</button>");
+         temp.append(button);
+     }
+     mainDiv.append(temp);
      }
      $("#maindivevent").append(mainDiv);
  }
