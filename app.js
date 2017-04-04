@@ -29,8 +29,8 @@ function initMap(lat1, lng1) {
             content: contentString
         })
         marker.addListener("click", function() {
-        infoWindow.open(map, marker);
-    });
+            infoWindow.open(map, marker);
+        });
     }
 }
 var userlat;
@@ -63,7 +63,7 @@ function eventajax() {
         // makes a main div that needs to be appended to the page
         var mainDiv = $("<div>");
         for (var i = 0; i < ajaxcall.events.event.length; i++) {
-            var temp = $("<div>");
+            var temp = $("<br><div id=" + "'" + ajaxcall.events.event[i].title + "'" + ">");
             temp.addClass("events");
             // makes a div inside the div for the title
             var title = $("<div>");
@@ -73,7 +73,7 @@ function eventajax() {
             // displays start time
             var divstart = $("<div>");
             var start = ajaxcall.events.event[i].start_time;
-            divstart.append("Start date and time: "+start);
+            divstart.append("Start date and time: " + start);
             temp.append(divstart);
             // grabs address and makes a div to put inside of temp
             var address = $("<div>");
@@ -87,11 +87,16 @@ function eventajax() {
                 if (performer.name) {
                     performer = performer.name;
                     divperformer.html("Performer: " + performer);
+                    var button = $("<button>"+performer+"</button>");
+                    button.attr("data-performer", performer)
+                    temp.append(button);
                 }
                 if (Array.isArray(performer)) {
                     for (var n = 0; n < performer.length; n++) {
                         performerarray.push("<p>Performer: " + performer[n].name + "</p>");
-
+                        var button = $("<button>"+performer[n].name+"</button>");
+                        button.attr("data-performer", performer[n].name)
+                        temp.append(button);
                     }
                     divperformer.append(performerarray);
                 }
@@ -101,12 +106,11 @@ function eventajax() {
 
             }
             temp.append(divperformer);
-            if (performer === "Performer: N/A") {
+            // if (performer === "Performer: N/A") {
 
-            } else {
-                var button = $("<button>Spotify</button>");
-                temp.append(button);
-            }
+            // } else {
+
+            // }
             mainDiv.append(temp);
         }
         $("#maindivevent").append(mainDiv);
