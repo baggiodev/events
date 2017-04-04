@@ -3,14 +3,16 @@
   <head>
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
-    <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
     <meta charset="utf-8">
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 100%;
+        height: 50%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -23,112 +25,7 @@
   <body>
     <div id="map"></div>
     <div id="maindivevent"></div>
-    <script>
-  var map;
-  var ajaxcall;
-  var performerarray = [];
- function initMap(lat, lng) {
-     var myLatLng = {
-         lat: lat,
-         lng: lng
-     };
-
-        map = new google.maps.Map(document.getElementById('map'), {
-         zoom: 10,
-         center: myLatLng
-     });
- }
- var userlat;
- var userlng;
- var userlocation = "Austin";
- var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
- $.ajax({
-     url: queryURL,
-     method: "GET"
- }).done(function(response) {
-     // console.log(response);
-     userlat = response.results[0].geometry.location.lat;
-     userlng = response.results[0].geometry.location.lng;
- });
-
- $.ajax({
-     url: "http://api.eventful.com/json/events/search?q=music&app_key=GCqrsqLnPhVxFkQD&location=Austin",
-     method: "GET",
-     dataType: "jsonp"
- }).done(function(response) {
-     console.log(response);
-     ajaxcall = response;
-     initMap(userlat,userlng);
-     eventcall();
- });
- console.log(ajaxcall);
-
- function eventcall() {
-    console.log(ajaxcall);
-    // debugger;
-     // makes a main div that needs to be appended to the page
-     var mainDiv = $("<div>");
-     for (var i = 0; i < ajaxcall.events.event.length; i++) {
-        var eventLatLng = {
-            lat: parseInt(ajaxcall.events.event[i].latitude),
-            lng: parseInt(ajaxcall.events.event[i].longitude)
-        }
-        var marker = new google.maps.Marker({
-            position: eventLatLng,
-            map: map,
-            title: ajaxcall.events.event[i].title
-        });
-         var temp = $("<div>");// console.log(ajaxcall.events.event[i].title);
-         temp.addClass("events");
-         // makes a div inside the div for the title
-         var title = $("<div>");
-         var divtitle = ajaxcall.events.event[i].title;
-         title.text("Event Title: "+divtitle);
-         temp.append(title);
-         // grabs address and makes a div to put inside of temp
-         var address = $("<div>");
-         var divaddress = ajaxcall.events.event[i].venue_address;
-         address.html("Address: "+divaddress);
-         temp.append(address);
-         var divperformer = $("<div>");
-         var performer
-         if (ajaxcall.events.event[i].performers){
-            console.log(i)
-            performer = ajaxcall.events.event[i].performers.performer
-            if(performer.name){
-                performer = performer.name
-                divperformer.html("Performer: "+performer);
-            }
-            console.log(performer);
-            if(Array.isArray(performer)){
-                console.log("test");
-                for (var i = 0; i < performer.length; i++) {
-                    performerarray.push("<p>Performer: "+performer[i].name+"</p>");
-                    
-                }
-                console.log(performerarray);
-                // divperformer.append("hahaha");
-                divperformer.append(performerarray);
-            }
-     }
-     else {
-         performer = "Performer: N/A"
-         divperformer.html(performer);
-
-     }
-         // divperformer.html(performer);
-         temp.append(divperformer);
-         if(performer ==="Performer: N/A"){
-
-         }
-         else{var button = $("<button>Spotify</button>");
-         temp.append(button);
-     }
-     mainDiv.append(temp);
-     }
-     $("#maindivevent").append(mainDiv);
- }
-    </script>
+    <script src="app.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc"
     async defer></script>
   </body>
