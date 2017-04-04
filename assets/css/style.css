@@ -1,0 +1,115 @@
+/* Stylesheet */
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+header {	
+	width: 100vw;
+	height: 7vh;
+	background-color: #000;
+	position: fixed;
+	top: 0px;
+	z-index: 50;
+	margin: auto;
+	padding: 10px 0;
+}
+
+header h1 {
+	color: #fff;
+	font-size: 2.4em;
+	margin: 4px 0px 0px 7.5vw;
+	display: inline-block;
+}
+
+#searchField {
+	display: inline-block;
+	float: right;	
+	margin: 15px 8vw 0px 0px;
+}
+
+#searchField .submitBtn {
+	background-color: #fff;
+	background : -webkit-gradient(linear, left top, left bottom, color-stop(0%, #6f6f6f), color-stop(50%,#000));
+	color: #fff;
+	border-radius: 3px;
+	height: 25px;
+}
+
+#searchInput {
+	border-radius: 3px;
+	height: 20px;
+	margin-left: 10px;
+	width: 235px;
+}
+
+.container {
+	margin-top: 70px;
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+	background-color: #000;
+	position: fixed;
+}
+
+.contentContainer {
+	background-color: #fff;
+	width: 50vw;
+	height: 83vh;
+	display: inline-block;
+	margin: 0px 2px 0px 8vw;
+	border-radius: 5px;
+	overflow: auto;
+	position: relative;
+}
+
+.sidebar {
+	background-color: #fff;
+	width: 30vw;
+	height: 55vh;
+	float: right;
+	display: inline-block;
+	margin: 0px 8vw 0px 2px;
+	border-radius: 5px;
+	overflow: auto;
+	position: relative;
+}
+
+.events {
+	margin: 25px 20px;
+}
+
+#map{
+	height: 100%;
+	width: 100%;
+}
+
+#popSearch {
+	width: 30vw;
+	height: 25.5vh;
+	display: inline-block;
+	border-radius: 5px;
+	background-color: #fff;
+	top: -26%;
+	position: relative;
+	float: right;
+	margin: 0px 8vw 0px 2px;
+}
+
+footer {
+	height: 7vh;
+	width: 100vw;
+	background-color: #000;
+	bottom: 0;
+	position: fixed;
+	z-index: 50;
+}
+
+footer p {
+	text-align: center;
+	font-size: .9em;
+	color: #fff;
+	margin-top: 17px;
+	margin-bottom: auto;
+}
