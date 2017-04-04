@@ -5,6 +5,9 @@ var test
 var perfList;
 var currArtist;
 function initMap(lat1, lng1) {
+        
+    console.log(lat1);
+    console.log(lng1);
     var myLatLng = {
         lat: lat1,
         lng: lng1
@@ -30,22 +33,27 @@ function initMap(lat1, lng1) {
         var contentString = '<div id="content">' +
             "Event Title: " + ajaxcall.events.event[i].title + "</div>"
         marker.addListener("click", function() {
-            (this).infoWindow.open(map, marker);
+            (this).infoWindow.open(map, this);
         });
     }
 }
 var userlat;
 var userlng;
-var userlocation = "Austin";
-var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
+var userlocation;
+var queryURL;
+
+function start(){
 $.ajax({
     url: queryURL,
     method: "GET"
 }).done(function(response) {
     userlat = parseFloat(response.results[0].geometry.location.lat);
     userlng = parseFloat(response.results[0].geometry.location.lng);
+    console.log("userlat " + userlat);
+    console.log("userlng " + userlng);
     eventajax();
 });
+}
 
 function eventajax() {
     eventurl = "http://api.eventful.com/json/events/search?q=music&app_key=GCqrsqLnPhVxFkQD&location=" + userlocation
@@ -60,7 +68,7 @@ function eventajax() {
         console.log(ajaxcall);
     });
 
-    function eventcall() {
+function eventcall() {
         // makes a main div that needs to be appended to the page
         var mainDiv = $("<div>");
         for (var i = 0; i < ajaxcall.events.event.length; i++) {
@@ -109,18 +117,20 @@ function eventajax() {
 
             }
             temp.append(divperformer);
-            // if (performer === "Performer: N/A") {
-
-            // } else {
-
-            // }
             mainDiv.append(temp);
         }
-        $("#maindivevent").append(mainDiv);
+        $("#maindivevent").html(mainDiv);
     }
 }
-
+$(".submitBtn").click(function(){
+        userlocation = $("#searchInput").val();
+        console.log(userlocation);
+        performerarray = [];
+        queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
+        start();
+    })
 window.onload = function() {
+
     $(".spotify").on("click", function () {
     currArtist = $(this).text();
     console.log(currArtist);
@@ -161,4 +171,5 @@ window.onload = function() {
       });
     });
   });
+
 }
