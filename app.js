@@ -17,17 +17,25 @@ function initMap(lat1, lng1) {
             lat: parseFloat(ajaxcall.events.event[i].latitude),
             lng: parseFloat(ajaxcall.events.event[i].longitude)
         };
-        console.log(eventLatLng);
         marker = new google.maps.Marker({
             position: eventLatLng,
             map: map,
-            title: ajaxcall.events.event[i].title
+            title: ajaxcall.events.event[i].title,
+            infoWindow: i
         });
+        var contentString = '<div id="content">' +
+            "Event Title: " + ajaxcall.events.event[i].title + "</div>"
+        var infoWindow = new google.maps.InfoWindow({
+            content: contentString
+        })
+        marker.addListener("click", function() {
+        infoWindow.open(map, marker);
+    });
     }
 }
 var userlat;
 var userlng;
-var userlocation = "grand rapids";
+var userlocation = "Austin";
 var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
 $.ajax({
     url: queryURL,
@@ -62,6 +70,11 @@ function eventajax() {
             var divtitle = ajaxcall.events.event[i].title;
             title.text("Event Title: " + divtitle);
             temp.append(title);
+            // displays start time
+            var divstart = $("<div>");
+            var start = ajaxcall.events.event[i].start_time;
+            divstart.append("Start date and time: "+start);
+            temp.append(divstart);
             // grabs address and makes a div to put inside of temp
             var address = $("<div>");
             var divaddress = ajaxcall.events.event[i].venue_address;
@@ -99,3 +112,4 @@ function eventajax() {
         $("#maindivevent").append(mainDiv);
     }
 }
+window.onload = function() {}
