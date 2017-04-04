@@ -116,7 +116,7 @@ function eventcall() {
             temp.append(divperformer);
             mainDiv.append(temp);
         }
-        $("#maindivevent").append(mainDiv);
+        $("#maindivevent").html(mainDiv);
     }
 }
 
