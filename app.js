@@ -1,12 +1,8 @@
 var map;
 var ajaxcall;
 var performerarray = [];
-<<<<<<< HEAD
-var test;
-=======
 var test
 var perfList;
->>>>>>> 54555178a2ea0187b41db473769f0169a2b2f64b
 function initMap(lat1, lng1) {
         
     console.log(lat1);
@@ -50,7 +46,6 @@ $.ajax({
     url: queryURL,
     method: "GET"
 }).done(function(response) {
-    debugger;
     userlat = parseFloat(response.results[0].geometry.location.lat);
     userlng = parseFloat(response.results[0].geometry.location.lng);
     console.log("userlat " + userlat);
