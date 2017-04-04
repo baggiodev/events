@@ -1,7 +1,12 @@
 var map;
 var ajaxcall;
 var performerarray = [];
+<<<<<<< HEAD
 var test;
+=======
+var test
+var perfList;
+>>>>>>> 54555178a2ea0187b41db473769f0169a2b2f64b
 function initMap(lat1, lng1) {
         
     console.log(lat1);
@@ -93,20 +98,23 @@ function eventcall() {
             if (ajaxcall.events.event[i].performers) {
                 performer = ajaxcall.events.event[i].performers.performer;
                 if (performer.name) {
+                    temp.attr("id",performer.name);
                     performer = performer.name;
                     divperformer.html("Performer: " + performer);
-                    var button = $("<button>" + performer + "</button>");
+                    var button = $("<button class='spotify'>" + performer + "</button>");
                     button.attr("data-performer", performer)
                     temp.append(button);
                 }
                 if (Array.isArray(performer)) {
                     for (var n = 0; n < performer.length; n++) {
                         performerarray.push("<p>Performer: " + performer[n].name + "</p>");
-                        var button = $("<button>" + performer[n].name + "</button>");
+                        var button = $("<button class='spotify'>" + performer[n].name + "</button>");
                         button.attr("data-performer", performer[n].name)
+                        perfList += " "+performer[n].name;
                         temp.append(button);
                     }
                     divperformer.append(performerarray);
+                    temp.attr("id",perfList);
                 }
             } else {
                 performer = "Performer: N/A";
@@ -119,11 +127,50 @@ function eventcall() {
         $("#maindivevent").html(mainDiv);
     }
 }
-
-window.onload = function() {
-    $(".submitBtn").click(function(){
+$(".submitBtn").click(function(){
         userlocation = $("#searchInput").val();
         console.log(userlocation);
         start();
     })
+window.onload = function() {
+
+    $(".spotify").on("click", function () {
+    var artist = $(this).val();
+    // Running an initial search to identify the artist's unique Spotify id
+    var queryURL = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist";
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).done(function(response) {
+
+      // Printing the entire object to console
+      console.log(response);
+
+      // Printing the artist id from the Spotify object to console
+      var artistID = response.artists.items[0].id;
+
+      // Building a SECOND URL to query another Spotify endpoint (this one for the tracks)
+      var queryURLTracks = "https://api.spotify.com/v1/artists/" + artistID + "/top-tracks?country=US";
+
+      // Running a second AJAX call to get the tracks associated with that Spotify id
+      $.ajax({
+        url: queryURLTracks,
+        method: "GET"
+      }).done(function(trackResponse) {
+
+        // Logging the tracks
+        console.log(trackResponse);
+
+        // Building a Spotify player playing the top song associated with the artist
+        // (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
+        var player = "<iframe src='https://embed.spotify.com/?uri=spotify:track:" +
+          trackResponse.tracks[0].id +
+          "' frameborder='0' allowtransparency='true'></iframe>";
+
+        // Appending the new player into the HTML
+        $("#"+$(this).val()).append(player);
+      });
+    });
+  });
+
 }
