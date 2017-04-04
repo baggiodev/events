@@ -1,3 +1,12 @@
+var config = {
+    apiKey: "AIzaSyDkvt1qvr4ffpF-rps-qW8DxzYMwFEtjqQ",
+    authDomain: "livemusicfinder-d1e8a.firebaseapp.com",
+    databaseURL: "https://livemusicfinder-d1e8a.firebaseio.com",
+    projectId: "livemusicfinder-d1e8a",
+    storageBucket: "livemusicfinder-d1e8a.appspot.com",
+    messagingSenderId: "422966048796"
+};
+firebase.initializeApp(config);
 var map;
 var ajaxcall;
 var performerarray = [];
