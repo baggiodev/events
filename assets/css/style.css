@@ -5,48 +5,9 @@ html {
 	min-height: 100%;
 }
 
-/* Initial start page */
-.homeContainer {
-	height: 100vh;
-	width: 100vw;
-	background-color: #000;
-	overflow: hidden;
-}
-
-.styleBackground {
-	width: 600px;
-	height: 600px;
-	border-radius: 50%;
-	margin: auto auto;
-	background-image: url("../images/openBackground.jpeg");
-	background-size: 600px 600px;
-	background-color: #fff;
-}
-
-#openSearch .submitBtn {
-	background-color: #fff;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #6f6f6f), color-stop(50%,#000));
-	color: #fff;
-	border-radius: 3px;
-	height: 25px;
-	display: inline-block;
-	margin: 50% 0 50% 15%;
-	width: 100px;
-	font-size: 1.5em;
-	height: 50px;
-}
-
-#openSearch #searchBtn {
-	margin: 50% 0 50% 10px;
-	height: 35px;
-	width: 300px;
-	font-size: 1.3em;
-}
-
-/* Homepage */
 header {	
 	width: 100vw;
-	height: 50px;
+	height: 7vh;
 	background-color: #000;
 	position: fixed;
 	top: 0px;
@@ -83,54 +44,61 @@ header h1 {
 	width: 235px;
 }
 
-.background {
-	height: 100vh;
-	width: 100vw;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-image: url("../images/background.jpg");
-	background-attachment: fixed;
-}
-
 .container {
 	margin-top: 70px;
 	width: 100vw;
 	height: 100vh;
 	position: relative;
 	background-color: #000;
-	opacity: .85;
 	position: fixed;
 }
 
 .contentContainer {
-	background-color: #bbbbbb;
-	width: 60vw;
+	background-color: #fff;
+	width: 50vw;
 	height: 83vh;
 	display: inline-block;
 	margin: 0px 2px 0px 8vw;
-	clear: both;
 	border-radius: 5px;
 	overflow: auto;
+	position: relative;
 }
 
 .sidebar {
-	background-color: #bbbbbb;
-	width: 20vw;
-	height: 50vh;
+	background-color: #fff;
+	width: 30vw;
+	height: 55vh;
 	float: right;
 	display: inline-block;
 	margin: 0px 8vw 0px 2px;
-	clear: both;
 	border-radius: 5px;
 	overflow: auto;
+	position: relative;
 }
 
 .events {
 	margin: 25px 20px;
 }
 
+#map{
+	height: 100%;
+	width: 100%;
+}
+
+#popSearch {
+	width: 30vw;
+	height: 25.5vh;
+	display: inline-block;
+	border-radius: 5px;
+	background-color: #fff;
+	top: -26%;
+	position: relative;
+	float: right;
+	margin: 0px 8vw 0px 2px;
+}
+
 footer {
-	height: 50px;
+	height: 7vh;
 	width: 100vw;
 	background-color: #000;
 	bottom: 0;
@@ -142,12 +110,10 @@ footer p {
 	text-align: center;
 	font-size: .9em;
 	color: #fff;
-	margin-top: 20px;
+	margin-top: 17px;
+	margin-bottom: auto;
 }
-#map{
-	height:500px;
-	width: 500px;
-	background-color: red;
-}
+
+
 
 
