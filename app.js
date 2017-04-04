@@ -3,6 +3,7 @@ var ajaxcall;
 var performerarray = [];
 var test
 var perfList;
+var currArtist;
 function initMap(lat1, lng1) {
     var myLatLng = {
         lat: lat1,
@@ -85,23 +86,22 @@ function eventajax() {
             if (ajaxcall.events.event[i].performers) {
                 performer = ajaxcall.events.event[i].performers.performer;
                 if (performer.name) {
-                    temp.attr("id",performer.name);
                     performer = performer.name;
+                    temp.addClass(performer.replace( /\s/g, ""));
                     divperformer.html("Performer: " + performer);
                     var button = $("<button class='spotify'>" + performer + "</button>");
                     button.attr("data-performer", performer)
                     temp.append(button);
                 }
                 if (Array.isArray(performer)) {
-                    for (var n = 0; n < performer.length; n++) {
+                    for (var n = 1; n < performer.length; n++) {
                         performerarray.push("<p>Performer: " + performer[n].name + "</p>");
                         var button = $("<button class='spotify'>" + performer[n].name + "</button>");
                         button.attr("data-performer", performer[n].name)
-                        perfList += " "+performer[n].name;
+                        temp.addClass((performer[n].name).replace( /\s/g, ""));
                         temp.append(button);
                     }
                     divperformer.append(performerarray);
-                    temp.attr("id",perfList);
                 }
             } else {
                 performer = "Performer: N/A";
@@ -122,9 +122,10 @@ function eventajax() {
 
 window.onload = function() {
     $(".spotify").on("click", function () {
-    var artist = $(this).val();
+    currArtist = $(this).text();
+    console.log(currArtist);
     // Running an initial search to identify the artist's unique Spotify id
-    var queryURL = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist";
+    var queryURL = "https://api.spotify.com/v1/search?q=" + currArtist + "&type=artist";
     $.ajax({
       url: queryURL,
       method: "GET"
@@ -153,9 +154,10 @@ window.onload = function() {
         var player = "<iframe src='https://embed.spotify.com/?uri=spotify:track:" +
           trackResponse.tracks[0].id +
           "' frameborder='0' allowtransparency='true'></iframe>";
-
+          currArtist = currArtist.replace( /\s/g, "");
         // Appending the new player into the HTML
-        $("#"+$(this).val()).append(player);
+        console.log(currArtist);
+        $("."+currArtist).append(player);
       });
     });
   });
