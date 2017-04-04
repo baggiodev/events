@@ -119,7 +119,7 @@ function eventcall() {
             temp.append(divperformer);
             mainDiv.append(temp);
         }
-        $("#maindivevent").html(mainDiv);
+        $(".contentContainer").html(mainDiv);
     }
 }
 $(document).on("click",".spotify",function() {
