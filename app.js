@@ -62,12 +62,12 @@ function eventajax() {
         // makes a main div that needs to be appended to the page
         var mainDiv = $("<div>");
         for (var i = 0; i < ajaxcall.events.event.length; i++) {
-            var temp = $("<br><div id=" + "'" + ajaxcall.events.event[i].title + "'" + ">");
+            var temp = $("<div id=" + "'" + ajaxcall.events.event[i].title + "'" + ">");
             temp.addClass("events");
             // makes a div inside the div for the title
             var title = $("<div>");
             var divtitle = ajaxcall.events.event[i].title;
-            title.text("Event Title: " + divtitle);
+            title.html("<h3>Event Title: " + divtitle+"</h3>");
             temp.append(title);
             // displays start time
             var divstart = $("<div>");
