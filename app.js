@@ -1,8 +1,11 @@
 var map;
 var ajaxcall;
 var performerarray = [];
-var test
+var test;
 function initMap(lat1, lng1) {
+        
+    console.log(lat1);
+    console.log(lng1);
     var myLatLng = {
         lat: lat1,
         lng: lng1
@@ -34,16 +37,22 @@ function initMap(lat1, lng1) {
 }
 var userlat;
 var userlng;
-var userlocation = "Austin";
+var userlocation;
 var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
+
+function start(){
 $.ajax({
     url: queryURL,
     method: "GET"
 }).done(function(response) {
+    debugger;
     userlat = parseFloat(response.results[0].geometry.location.lat);
     userlng = parseFloat(response.results[0].geometry.location.lng);
+    console.log("userlat " + userlat);
+    console.log("userlng " + userlng);
     eventajax();
 });
+}
 
 function eventajax() {
     eventurl = "http://api.eventful.com/json/events/search?q=music&app_key=GCqrsqLnPhVxFkQD&location=" + userlocation
@@ -58,7 +67,7 @@ function eventajax() {
         console.log(ajaxcall);
     });
 
-    function eventcall() {
+function eventcall() {
         // makes a main div that needs to be appended to the page
         var mainDiv = $("<div>");
         for (var i = 0; i < ajaxcall.events.event.length; i++) {
@@ -105,14 +114,16 @@ function eventajax() {
 
             }
             temp.append(divperformer);
-            // if (performer === "Performer: N/A") {
-
-            // } else {
-
-            // }
             mainDiv.append(temp);
         }
         $("#maindivevent").append(mainDiv);
     }
 }
-window.onload = function() {}
+
+window.onload = function() {
+    $(".submitBtn").click(function(){
+        userlocation = $("#searchInput").val();
+        console.log(userlocation);
+        start();
+    })
+}
