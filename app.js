@@ -32,14 +32,14 @@ function initMap(lat1, lng1) {
         var contentString = '<div id="content">' +
             "Event Title: " + ajaxcall.events.event[i].title + "</div>"
         marker.addListener("click", function() {
-            (this).infoWindow.open(map, marker);
+            (this).infoWindow.open(map, this);
         });
     }
 }
 var userlat;
 var userlng;
 var userlocation;
-var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
+var queryURL;
 
 function start(){
 $.ajax({
@@ -125,6 +125,8 @@ function eventcall() {
 $(".submitBtn").click(function(){
         userlocation = $("#searchInput").val();
         console.log(userlocation);
+        performerarray = [];
+        queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
         start();
     })
 window.onload = function() {
