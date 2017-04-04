@@ -110,6 +110,7 @@ header h1 {
 	margin: 0px 2px 0px 8vw;
 	clear: both;
 	border-radius: 5px;
+	overflow: auto;
 }
 
 .sidebar {
@@ -121,6 +122,7 @@ header h1 {
 	margin: 0px 8vw 0px 2px;
 	clear: both;
 	border-radius: 5px;
+	overflow: auto;
 }
 
 .events {
@@ -141,6 +143,11 @@ footer p {
 	font-size: .9em;
 	color: #fff;
 	margin-top: 20px;
+}
+#map{
+	height:500px;
+	width: 500px;
+	background-color: red;
 }
 
 
