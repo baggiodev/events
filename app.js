@@ -1,7 +1,7 @@
 var map;
 var ajaxcall;
 var performerarray = [];
-
+var test
 function initMap(lat1, lng1) {
     var myLatLng = {
         lat: lat1,
@@ -9,7 +9,7 @@ function initMap(lat1, lng1) {
     };
 
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 8,
+        zoom: 9,
         center: myLatLng
     });
     for (var i = 0; i < ajaxcall.events.event.length; i++) {
@@ -21,15 +21,14 @@ function initMap(lat1, lng1) {
             position: eventLatLng,
             map: map,
             title: ajaxcall.events.event[i].title,
-            infoWindow: i
-        });
+            infoWindow: new google.maps.InfoWindow({
+                content: "<div>"+ajaxcall.events.event[i].title+"</div>"+"<div>"+ajaxcall.events.event[i].description+"</div>"
+        })
+        })
         var contentString = '<div id="content">' +
             "Event Title: " + ajaxcall.events.event[i].title + "</div>"
-        var infoWindow = new google.maps.InfoWindow({
-            content: contentString
-        })
         marker.addListener("click", function() {
-            infoWindow.open(map, marker);
+            (this).infoWindow.open(map, marker);
         });
     }
 }
@@ -87,14 +86,14 @@ function eventajax() {
                 if (performer.name) {
                     performer = performer.name;
                     divperformer.html("Performer: " + performer);
-                    var button = $("<button>"+performer+"</button>");
+                    var button = $("<button>" + performer + "</button>");
                     button.attr("data-performer", performer)
                     temp.append(button);
                 }
                 if (Array.isArray(performer)) {
                     for (var n = 0; n < performer.length; n++) {
                         performerarray.push("<p>Performer: " + performer[n].name + "</p>");
-                        var button = $("<button>"+performer[n].name+"</button>");
+                        var button = $("<button>" + performer[n].name + "</button>");
                         button.attr("data-performer", performer[n].name)
                         temp.append(button);
                     }
