@@ -20,7 +20,7 @@ html {
 	margin: auto auto;
 	background-image: url("../images/openBackground.jpeg");
 	background-size: 600px 600px;
-	opacity: 0.8;
+	background-color: #fff;
 }
 
 #openSearch .submitBtn {
@@ -36,7 +36,7 @@ html {
 	height: 50px;
 }
 
-#openSearch #searchInput {
+#openSearch #searchBtn {
 	margin: 50% 0 50% 10px;
 	height: 35px;
 	width: 300px;
@@ -110,7 +110,6 @@ header h1 {
 	margin: 0px 2px 0px 8vw;
 	clear: both;
 	border-radius: 5px;
-
 }
 
 .sidebar {
@@ -124,6 +123,10 @@ header h1 {
 	border-radius: 5px;
 }
 
+.events {
+	margin: 25px 20px;
+}
+
 footer {
 	height: 50px;
 	width: 100vw;
@@ -135,9 +138,9 @@ footer {
 
 footer p {
 	text-align: center;
-	font-size: .7em;
+	font-size: .9em;
 	color: #fff;
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 
