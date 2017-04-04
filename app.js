@@ -7,6 +7,7 @@ var config = {
     messagingSenderId: "422966048796"
 };
 firebase.initializeApp(config);
+var dataRef = firebase.database();
 var map;
 var ajaxcall;
 var performerarray = [];
@@ -177,5 +178,10 @@ $(".submitBtn").click(function(){
         performerarray = [];
         queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
         start();
+        dataRef.once('value', function(snapshot) {
+        if (snapshot.hasChild(userlocation)) {
+        alert('exists');
+        }
+});
     })
 window.onload = function() {}
