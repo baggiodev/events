@@ -32,10 +32,13 @@ function initMap(lat1, lng1) {
             lat: parseFloat(ajaxcall.events.event[i].latitude),
             lng: parseFloat(ajaxcall.events.event[i].longitude)
         };
+        var labelThis = (i+1).toString();
+        console.log(labelThis);
         marker = new google.maps.Marker({
             position: eventLatLng,
             map: map,
             title: ajaxcall.events.event[i].title,
+            label: labelThis,
             infoWindow: new google.maps.InfoWindow({
                 content: "<div>"+ajaxcall.events.event[i].title+"</div>"+"<div>"+ajaxcall.events.event[i].description+"</div>"
         })
@@ -87,7 +90,7 @@ function eventcall() {
             // makes a div inside the div for the title
             var title = $("<div>");
             var divtitle = ajaxcall.events.event[i].title;
-            title.html("<h3>Event Title: " + divtitle+"</h3>");
+            title.html("<h3>"+(i+1)+" Event Title: " + divtitle+"</h3>");
             temp.append(title);
             // displays start time
             var divstart = $("<div>");
