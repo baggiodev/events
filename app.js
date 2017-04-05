@@ -15,7 +15,7 @@ var test
 var perfList;
 var currArtist;
 var count = 1;
-var cityRef = dataRef.child("places").child(city);
+// var cityRef = dataRef.child("places").child(city);
 $(".contentContainer").hide();
 $(".sidebar").hide();
 function initMap(lat1, lng1) {
@@ -37,7 +37,6 @@ function initMap(lat1, lng1) {
             lng: parseFloat(ajaxcall.events.event[i].longitude)
         };
         var labels = i + 1;
-        console.log(labels);
         marker = new google.maps.Marker({
             position: eventLatLng,
             label: labels.toString(),
@@ -54,7 +53,7 @@ function initMap(lat1, lng1) {
             (this).infoWindow.open(map, this);
             (this).setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
             console.log((this).testing)
-            $("#"+(this).testing).css("background","#966661");
+            $("#"+(this).testing).css("border","5px solid #966661");
         });
     }
 }
@@ -88,7 +87,6 @@ function eventajax() {
         initMap(userlat, userlng);
         console.log(ajaxcall);
     });
-
 function eventcall() {
         // makes a main div that needs to be appended to the page
         var mainDiv = $("<div>");
@@ -143,6 +141,10 @@ function eventcall() {
         $(".contentContainer").html(mainDiv);
     }
 }
+
+
+
+
 function checkIfExists(place) {
     var cityCount = {
     city: city,
