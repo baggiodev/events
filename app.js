@@ -1,9 +1,21 @@
+var config = {
+    apiKey: "AIzaSyDkvt1qvr4ffpF-rps-qW8DxzYMwFEtjqQ",
+    authDomain: "livemusicfinder-d1e8a.firebaseapp.com",
+    databaseURL: "https://livemusicfinder-d1e8a.firebaseio.com",
+    projectId: "livemusicfinder-d1e8a",
+    storageBucket: "livemusicfinder-d1e8a.appspot.com",
+    messagingSenderId: "422966048796"
+};
+firebase.initializeApp(config);
+var dataRef = firebase.database();
 var map;
 var ajaxcall;
 var performerarray = [];
 var test
 var perfList;
 var currArtist;
+var count = 1;
+var cityRef = dataRef.child("places").child(city);
 $(".contentContainer").hide();
 $(".sidebar").hide();
 function initMap(lat1, lng1) {
@@ -128,7 +140,14 @@ function eventcall() {
         $(".contentContainer").html(mainDiv);
     }
 }
-    $(document).on("click",".spotify",function() {
+function checkIfExists(place) {
+    var cityCount = {
+    city: city,
+    count: count
+    }
+}
+
+$(document).on("click",".spotify",function() {
     currArtist = $(this).text();
     console.log(currArtist);
     // Running an initial search to identify the artist's unique Spotify id
@@ -167,7 +186,7 @@ function eventcall() {
         $("."+currArtist).append(player);
       });
     });
-  });
+});
 $(".submitBtn").click(function(){
     $(".contentContainer").show();
 $(".sidebar").show();
@@ -176,6 +195,25 @@ $(".sidebar").show();
         performerarray = [];
         queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
         start();
+        var city = userlocation;
+        cityRef = dataRef.child("places").child(city);
+        cityRef.once('value', function(snapshot) {
+        if( snapshot.val() === null ) {
+            dataRef.ref("places").push({
+                city: city,
+                count: count
+            })
+        } else {
+            
+            count = snapshot.val().Count;
+            count++;
+            dataRef.ref("places").push({
+                City: city,
+                Count: count
+            })
+        }
+
+});
     })
 window.onload = function() {
 
