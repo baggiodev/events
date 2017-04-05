@@ -94,10 +94,15 @@ function eventcall() {
             var temp = $("<div id=" + "'" + i + "'" + ">");
             temp.addClass("events");
             // makes a div inside the div for the title
+            var number = $("<h2>")
+            number.html(i+1);
+            temp.append(number);
             var title = $("<div>");
             var divtitle = ajaxcall.events.event[i].title;
-            title.html("<h3>"+(i+1)+" Event Title: " + divtitle+"</h3>");
+            title.html("<h3>"+divtitle+"</h3>");
             temp.append(title);
+            var number = $("<h2>")
+            number.html(i+1);
             // displays start time
             var divstart = $("<div>");
             var start = ajaxcall.events.event[i].start_time;
