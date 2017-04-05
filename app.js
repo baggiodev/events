@@ -31,6 +31,7 @@ function initMap(lat1, lng1) {
             label: labels.toString(),
             map: map,
             title: ajaxcall.events.event[i].title,
+            testing: i,
             infoWindow: new google.maps.InfoWindow({
                 content: "<div>"+ajaxcall.events.event[i].title+"</div>"+"<div>"+ajaxcall.events.event[i].description+"</div>"
         })
@@ -40,6 +41,8 @@ function initMap(lat1, lng1) {
         marker.addListener("click", function() {
             (this).infoWindow.open(map, this);
             (this).setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
+            console.log((this).testing)
+            $("#"+(this).testing).css("background","red");
         });
     }
 }
@@ -78,7 +81,7 @@ function eventcall() {
         // makes a main div that needs to be appended to the page
         var mainDiv = $("<div>");
         for (var i = 0; i < ajaxcall.events.event.length; i++) {
-            var temp = $("<div id=" + "'" + ajaxcall.events.event[i].title + "'" + ">");
+            var temp = $("<div id=" + "'" + i + "'" + ">");
             temp.addClass("events");
             // makes a div inside the div for the title
             var title = $("<div>");
