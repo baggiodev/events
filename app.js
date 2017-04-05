@@ -4,6 +4,8 @@ var performerarray = [];
 var test
 var perfList;
 var currArtist;
+$(".contentContainer").hide();
+$(".sidebar").hide();
 function initMap(lat1, lng1) {
         
     console.log(lat1);
@@ -22,8 +24,11 @@ function initMap(lat1, lng1) {
             lat: parseFloat(ajaxcall.events.event[i].latitude),
             lng: parseFloat(ajaxcall.events.event[i].longitude)
         };
+        var labels = i + 1;
+        console.log(labels);
         marker = new google.maps.Marker({
             position: eventLatLng,
+            label: labels.toString(),
             map: map,
             title: ajaxcall.events.event[i].title,
             infoWindow: new google.maps.InfoWindow({
@@ -34,6 +39,7 @@ function initMap(lat1, lng1) {
             "Event Title: " + ajaxcall.events.event[i].title + "</div>"
         marker.addListener("click", function() {
             (this).infoWindow.open(map, this);
+            (this).setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
         });
     }
 }
@@ -77,7 +83,7 @@ function eventcall() {
             // makes a div inside the div for the title
             var title = $("<div>");
             var divtitle = ajaxcall.events.event[i].title;
-            title.html("<h3>Event Title: " + divtitle+"</h3>");
+            title.html("<h3>"+(i+1)+" Event Title: " + divtitle+"</h3>");
             temp.append(title);
             // displays start time
             var divstart = $("<div>");
@@ -123,6 +129,8 @@ function eventcall() {
     }
 }
 $(".submitBtn").click(function(){
+    $(".contentContainer").show();
+$(".sidebar").show();
         userlocation = $("#searchInput").val();
         console.log(userlocation);
         performerarray = [];
