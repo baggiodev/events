@@ -128,18 +128,7 @@ function eventcall() {
         $(".contentContainer").html(mainDiv);
     }
 }
-$(".submitBtn").click(function(){
-    $(".contentContainer").show();
-$(".sidebar").show();
-        userlocation = $("#searchInput").val();
-        console.log(userlocation);
-        performerarray = [];
-        queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
-        start();
-    })
-window.onload = function() {
-
-    $(".spotify").on("click", function () {
+    $(document).on("click",".spotify",function() {
     currArtist = $(this).text();
     console.log(currArtist);
     // Running an initial search to identify the artist's unique Spotify id
@@ -179,5 +168,17 @@ window.onload = function() {
       });
     });
   });
+$(".submitBtn").click(function(){
+    $(".contentContainer").show();
+$(".sidebar").show();
+        userlocation = $("#searchInput").val();
+        console.log(userlocation);
+        performerarray = [];
+        queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
+        start();
+    })
+window.onload = function() {
+
+
 
 }
