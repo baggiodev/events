@@ -51,19 +51,19 @@ header h1 {
 
 /* Placeholder color change to work in seperate browsers */
 *::-webkit-input-placeholder {
-    color: #bfbfbf;
+    color: #fff;
 }
 *:-moz-placeholder {
     /* FF 4-18 */
-    color: #bfbfbf;
+    color: #fff;
 }
 *::-moz-placeholder {
     /* FF 19+ */
-    color: #bfbfbf;
+    color: #fff;
 }
 *:-ms-input-placeholder {
     /* IE 10+ */
-    color: #bfbfbf;
+    color: #fff;
 }
 
 .container {
@@ -129,7 +129,7 @@ header h1 {
 	position: relative;
 	float: right;
 	margin: 0px 8vw 0px 2px;
-	color: #afafaf;
+	color: #fff;
 }
 
 footer {
