@@ -31,10 +31,11 @@ header h1 {
 
 #searchField .submitBtn {
 	background-color: #afafaf;
-	background : -webkit-gradient(linear, left top, left bottom, color-stop(0%, #6f6f6f), color-stop(50%,#000));
-	color: #afafaf;
+	background : -webkit-gradient(linear, left top, left bottom, color-stop(0%, #844e46), color-stop(50%, #330902));
+	color: #fff;
 	border-radius: 3px;
 	height: 27px;
+	border-color: #fff;
 }
 
 #searchInput {
@@ -43,8 +44,26 @@ header h1 {
 	margin-left: 10px;
 	width: 235px;
 	background-color: #966661;
-	color: #afafaf;
+	color: #fff;
+	border-color: #fff;
 
+}
+
+/* Placeholder color change to work in seperate browsers */
+*::-webkit-input-placeholder {
+    color: #bfbfbf;
+}
+*:-moz-placeholder {
+    /* FF 4-18 */
+    color: #bfbfbf;
+}
+*::-moz-placeholder {
+    /* FF 19+ */
+    color: #bfbfbf;
+}
+*:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #bfbfbf;
 }
 
 .container {
@@ -61,13 +80,21 @@ header h1 {
 .contentContainer {
 	background-color: #330902;
 	width: 50vw;
-	height: 83vh;
+	height: 83.5vh;
 	display: inline-block;
 	margin: 0px 2px 0px 8vw;
 	border-radius: 5px;
 	overflow: auto;
 	position: relative;
 	color: #afafaf;
+}
+
+.contentContainer button {
+	background : -webkit-gradient(linear, left top, left bottom, color-stop(0%, #844e46), color-stop(50%, #330902));
+	color: #fff;
+	border-radius: 3px;
+	height: 27px;
+	border-color:  #afafaf;
 }
 
 .sidebar {
