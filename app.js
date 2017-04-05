@@ -42,7 +42,7 @@ function initMap(lat1, lng1) {
             (this).infoWindow.open(map, this);
             (this).setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
             console.log((this).testing)
-            $("#"+(this).testing).css("background","red");
+            $("#"+(this).testing).css("background","#966661");
         });
     }
 }
