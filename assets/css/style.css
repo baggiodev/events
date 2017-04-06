@@ -9,7 +9,7 @@ html {
 
 header {	
 	width: 100vw;
-	height: 7vh;
+	height: 50px;
 	background-color: #330902;
 	position: fixed;
 	top: 0px;
@@ -27,9 +27,6 @@ header h1 {
 
 body {
 	font-family: Arial, Helvetica, Times;
-	background-image: url("../images/background.jpeg");
-	background-size: 100%;
-	overflow: hidden;
 }
 /* Header search bar */
 
@@ -77,6 +74,10 @@ body {
     color: #fff;
 }
 
+input:focus {
+	outline: 0;
+}
+
 /* Background/Content container*/
 
 .container {
@@ -86,11 +87,22 @@ body {
 	position: relative;
 	background-color: #000;
 	position: fixed;
-	background-image: url("../images/background.jpeg");
+	background-image: url("../images/background2.jpeg");
 	background-size: 100% 100%;
 }
 
 /* Events content container */
+
+.initial {
+	background-color: #330902;
+	border-radius: 10px;
+	width: 310px;
+	color: #fdd308;
+	font-size: 1.6em;
+	padding: 15px;
+	margin: 150px auto;
+}
+
 
 .contentContainer {
 	background-color: #330902;
@@ -120,10 +132,13 @@ button:hover {
 }
 
 button:active {
-	border-color: none;
+	border-color: #fff;
 	background : -webkit-gradient(linear, left top, left bottom, color-stop(0%, #000), color-stop(50%, ##844e46));
-	color: #afafaf;
-	
+	color: #afafaf;	
+}
+
+button:focus {
+	outline: 0;
 }
 
 .contentContainer h2 {
@@ -144,8 +159,8 @@ button:active {
 
 ::-webkit-scrollbar
 {
-  width: 12px;  /* for vertical scrollbars */
-  height: 15px; /* for horizontal scrollbars */
+  width: 10px;  /* for vertical scrollbars */
+  height: 10px; /* for horizontal scrollbars */
 }
 
 ::-webkit-scrollbar-track
@@ -181,7 +196,7 @@ button:active {
 
 /* Popular search bottom sidebar */
 
-#popSearch {
+.popSearch {
 	width: 30vw;
 	height: 25.5vh;
 	display: inline-block;
@@ -197,7 +212,7 @@ button:active {
 /* Footer styles*/
 
 footer {
-	height: 7vh;
+	height: 50px;
 	width: 100vw;
 	background-color: #330902;
 	bottom: 0;

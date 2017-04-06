@@ -19,6 +19,7 @@ var s = 0;
 // var cityRef = dataRef.child("places").child(city);
 $(".contentContainer").hide();
 $(".sidebar").hide();
+$(".popSearch").hide();
 function initMap(lat1, lng1) {
         
     console.log(lat1);
@@ -204,8 +205,9 @@ $(document).on("click",".spotify",function() {
     });
 });
 $(".submitBtn").click(function(){
-    $(".contentContainer").show();
-$(".sidebar").show();
+    $(".popSearch").fadeIn(1150)
+    $(".contentContainer").fadeIn(900);
+$(".sidebar").fadeIn(1350);
         userlocation = $("#searchInput").val();
         console.log(userlocation);
         performerarray = [];
