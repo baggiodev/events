@@ -31,7 +31,7 @@ function initMap(lat1, lng1) {
         zoom: 9,
         center: myLatLng
     });
-    var colorarray = ["orange","white","yellow","maroon","grey","red"];
+    var colorarray = ["orange","chocolate","white","yellow","maroon","grey"];
     for (var i = 0; i < ajaxcall.events.event.length; i++) {
         var eventLatLng = {
             lat: parseFloat(ajaxcall.events.event[i].latitude),
@@ -54,9 +54,9 @@ function initMap(lat1, lng1) {
             var randomcolor = colorarray[Math.floor(Math.random()*colorarray.length)];
             console.log(randomcolor);
             (this).infoWindow.open(map, this);
-            (this).setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
+            (this).setIcon('assets/images/'+randomcolor+".png");
             console.log((this).testing)
-            $("#"+(this).testing).css("border","5px solid #966661");
+            $("#"+(this).testing).css("border","5px solid "+ randomcolor);
         });
     }
 }
