@@ -53,6 +53,7 @@ function initMap(lat1, lng1) {
         marker.addListener("click", function() {
             var randomcolor = colorarray[Math.floor(Math.random()*colorarray.length)];
             console.log(randomcolor);
+            (this).set("label", "");
             (this).infoWindow.open(map, this);
             (this).setIcon('assets/images/'+randomcolor+".png");
             console.log((this).testing)
