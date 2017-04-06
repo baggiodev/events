@@ -15,6 +15,7 @@ var test
 var perfList;
 var currArtist;
 var count = 1;
+var s = 0;
 // var cityRef = dataRef.child("places").child(city);
 $(".contentContainer").hide();
 $(".sidebar").hide();
@@ -51,13 +52,17 @@ function initMap(lat1, lng1) {
         var contentString = '<div id="content">' +
             "Event Title: " + ajaxcall.events.event[i].title + "</div>"
         marker.addListener("click", function() {
-            var randomcolor = colorarray[Math.floor(Math.random()*colorarray.length)];
+            var randomcolor = colorarray[s];
             console.log(randomcolor);
             (this).set("label", "");
             (this).infoWindow.open(map, this);
             (this).setIcon('assets/images/'+randomcolor+".png");
             console.log((this).testing)
             $("#"+(this).testing).css("border","5px solid "+ randomcolor);
+            s++
+            if(s===colorarray.length){
+                s=0;
+            }
         });
     }
 }
