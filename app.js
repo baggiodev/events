@@ -31,6 +31,7 @@ function initMap(lat1, lng1) {
         zoom: 9,
         center: myLatLng
     });
+    var colorarray = ["orange","white","yellow","maroon","grey","red"];
     for (var i = 0; i < ajaxcall.events.event.length; i++) {
         var eventLatLng = {
             lat: parseFloat(ajaxcall.events.event[i].latitude),
@@ -50,6 +51,8 @@ function initMap(lat1, lng1) {
         var contentString = '<div id="content">' +
             "Event Title: " + ajaxcall.events.event[i].title + "</div>"
         marker.addListener("click", function() {
+            var randomcolor = colorarray[Math.floor(Math.random()*colorarray.length)];
+            console.log(randomcolor);
             (this).infoWindow.open(map, this);
             (this).setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
             console.log((this).testing)
