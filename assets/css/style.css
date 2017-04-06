@@ -5,6 +5,8 @@ html {
 	min-height: 100%;
 }
 
+/* Header styles */
+
 header {	
 	width: 100vw;
 	height: 7vh;
@@ -23,6 +25,14 @@ header h1 {
 	display: inline-block;
 }
 
+body {
+	font-family: Arial, Helvetica, Times;
+	background-image: url("../images/background.jpeg");
+	background-size: 100%;
+	overflow: hidden;
+}
+/* Header search bar */
+
 #searchField {
 	display: inline-block;
 	float: right;	
@@ -31,7 +41,7 @@ header h1 {
 
 #searchField .submitBtn {
 	background-color: #afafaf;
-	background : -webkit-gradient(linear, left top, left bottom, color-stop(0%, #844e46), color-stop(50%, #330902));
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #844e46), color-stop(50%, #330902));
 	color: #fff;
 	border-radius: 3px;
 	height: 27px;
@@ -46,10 +56,11 @@ header h1 {
 	background-color: #966661;
 	color: #fff;
 	border-color: #fff;
-
 }
 
+/* Button styles*/
 /* Placeholder color change to work in seperate browsers */
+
 *::-webkit-input-placeholder {
     color: #fff;
 }
@@ -66,6 +77,8 @@ header h1 {
     color: #fff;
 }
 
+/* Background/Content container*/
+
 .container {
 	margin-top: 70px;
 	width: 100vw;
@@ -76,6 +89,8 @@ header h1 {
 	background-image: url("../images/background.jpeg");
 	background-size: 100% 100%;
 }
+
+/* Events content container */
 
 .contentContainer {
 	background-color: #330902;
@@ -89,13 +104,61 @@ header h1 {
 	color: #afafaf;
 }
 
+/* Spotify Buttons/Event headings */
+
 .contentContainer button {
 	background : -webkit-gradient(linear, left top, left bottom, color-stop(0%, #844e46), color-stop(50%, #330902));
 	color: #fff;
 	border-radius: 3px;
 	height: 27px;
 	border-color:  #afafaf;
+	overflow: hidden;
 }
+
+button:hover {
+	border-color:  #fdd308;
+}
+
+button:active {
+	border-color: none;
+	background : -webkit-gradient(linear, left top, left bottom, color-stop(0%, #000), color-stop(50%, ##844e46));
+	color: #afafaf;
+	
+}
+
+.contentContainer h2 {
+	font-size: 1.4em;
+	color: #fdd308;
+}
+
+.contentContainer h3 {
+	font-size: 1.4em;
+	color: #fdd308;
+}
+
+.events {
+	margin: 25px 20px;
+}
+
+/* Scrollbar styles */
+
+::-webkit-scrollbar
+{
+  width: 12px;  /* for vertical scrollbars */
+  height: 15px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  background: #330902;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: #fdd308;
+}
+
+/* Google Maps sidebar */
 
 .sidebar {
 	background-color: #330902;
@@ -110,14 +173,13 @@ header h1 {
 	color: #afafaf;
 }
 
-.events {
-	margin: 25px 20px;
-}
 
 #map{
 	height: 100%;
 	width: 100%;
 }
+
+/* Popular search bottom sidebar */
 
 #popSearch {
 	width: 30vw;
@@ -131,6 +193,8 @@ header h1 {
 	margin: 0px 8vw 0px 2px;
 	color: #fff;
 }
+
+/* Footer styles*/
 
 footer {
 	height: 7vh;
