@@ -132,6 +132,7 @@ function checkIfExists(place) {
     }
 }
 $(document).on("click",".markerbutt",function(){
+    (this).remove();
     var whichmark = parseInt($(this).attr("id"));
     var eventLatLng = {
             lat: parseFloat(ajaxcall.events.event[whichmark].latitude),
