@@ -22,11 +22,11 @@ $(".contentContainer").hide();
 $(".sidebar").hide();
 $(".popSearch").hide();
 function initMap(lat1, lng1) {
+    //makes map
     var myLatLng = {
         lat: lat1,
         lng: lng1
     };
-
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 9,
         center: myLatLng
@@ -38,6 +38,7 @@ var userlocation;
 var queryURL;
 
 function start(){
+    //ajax call to get coords for google maps
 $.ajax({
     url: queryURL,
     method: "GET"
@@ -49,6 +50,7 @@ $.ajax({
 }
 
 function eventajax() {
+    //ajax call for eventful to grab JSON
     eventurl = "http://api.eventful.com/json/events/search?q=music&app_key=GCqrsqLnPhVxFkQD&location=" + userlocation
     $.ajax({
         url: eventurl,
@@ -90,6 +92,7 @@ function eventcall() {
             temp.append(viewonmap);
             var divperformer = $("<div>");
             var performer;
+            //checks if theres a perfomer
             if (ajaxcall.events.event[i].performers) {
                 performer = ajaxcall.events.event[i].performers.performer;
                 if (performer.name) {
@@ -100,6 +103,7 @@ function eventcall() {
                     button.attr("data-performer", performer)
                     temp.append(button);
                 }
+                //if performer is an array make multiple buttons for it and list it
                 if (Array.isArray(performer)) {
                     for (var n = 1; n < performer.length; n++) {
                         performerarray.push("<p>Performer: " + performer[n].name + "</p>");
@@ -131,14 +135,18 @@ function checkIfExists(place) {
     count: count
     }
 }
+//whenever a marker is clicked
 $(document).on("click",".markerbutt",function(){
+    //remove button clicked
     (this).remove();
+    //grabs the int version of the id
     var whichmark = parseInt($(this).attr("id"));
     var eventLatLng = {
             lat: parseFloat(ajaxcall.events.event[whichmark].latitude),
             lng: parseFloat(ajaxcall.events.event[whichmark].longitude)
         };
             map.panTo(eventLatLng);
+            //makes a marker
     marker = new google.maps.Marker({
             position: eventLatLng,
             label: (whichmark+1).toString(),
@@ -149,11 +157,13 @@ $(document).on("click",".markerbutt",function(){
                 content: "<div>"+ajaxcall.events.event[whichmark].title+"</div>"+"<div>"+ajaxcall.events.event[whichmark].description+"</div>"
         })
 })
+    //give marker a click function
     marker.addListener("click", function() {
         var randomcolor = colorarray[s];
         (this).set("label", "");
         (this).infoWindow.open(map, this);
         (this).setIcon('assets/images/' + randomcolor + ".png");
+        //grab div with id and give it a  border
         $("#" + (this).markerid).css("border", "5px solid " + randomcolor);
         s++
         if (s === colorarray.length) {
@@ -191,6 +201,7 @@ $(document).on("click",".spotify",function() {
         $("."+currArtist).append(player);
       });
     });
+    //removes spotify button so they can't click on it again
     (this).remove();
 });
 $(".submitBtn").click(function(){
