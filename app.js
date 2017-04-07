@@ -137,6 +137,7 @@ $(document).on("click",".markerbutt",function(){
             lat: parseFloat(ajaxcall.events.event[whichmark].latitude),
             lng: parseFloat(ajaxcall.events.event[whichmark].longitude)
         };
+            map.panTo(eventLatLng);
     marker = new google.maps.Marker({
             position: eventLatLng,
             label: (whichmark+1).toString(),
