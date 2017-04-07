@@ -16,6 +16,7 @@ var perfList;
 var currArtist;
 var count = 1;
 var s = 0;
+var colorarray = ["orange","chocolate","white","yellow","maroon","grey"];
 // var cityRef = dataRef.child("places").child(city);
 $(".contentContainer").hide();
 $(".sidebar").hide();
@@ -30,37 +31,6 @@ function initMap(lat1, lng1) {
         zoom: 9,
         center: myLatLng
     });
-    var colorarray = ["orange","chocolate","white","yellow","maroon","grey"];
-    for (var i = 0; i < ajaxcall.events.event.length; i++) {
-        var eventLatLng = {
-            lat: parseFloat(ajaxcall.events.event[i].latitude),
-            lng: parseFloat(ajaxcall.events.event[i].longitude)
-        };
-        var labels = i + 1;
-        marker = new google.maps.Marker({
-            position: eventLatLng,
-            label: labels.toString(),
-            map: map,
-            title: ajaxcall.events.event[i].title,
-            markerid: i,
-            infoWindow: new google.maps.InfoWindow({
-                content: "<div>"+ajaxcall.events.event[i].title+"</div>"+"<div>"+ajaxcall.events.event[i].description+"</div>"
-        })
-        })
-        var contentString = '<div id="content">' +
-            "Event Title: " + ajaxcall.events.event[i].title + "</div>"
-        marker.addListener("click", function() {
-            var randomcolor = colorarray[s];
-            (this).set("label", "");
-            (this).infoWindow.open(map, this);
-            (this).setIcon('assets/images/'+randomcolor+".png");
-            $("#"+(this).markerid).css("border","5px solid "+ randomcolor);
-            s++
-            if(s===colorarray.length){
-                s=0;
-            }
-        });
-    }
 }
 var userlat;
 var userlng;
@@ -113,6 +83,11 @@ function eventcall() {
             var divaddress = ajaxcall.events.event[i].venue_address;
             address.html("Address: " + divaddress + "<p>Venue: " + ajaxcall.events.event[i].venue_name);
             temp.append(address);
+            var viewonmap = $("<button>");
+            viewonmap.attr("id",i);
+            viewonmap.text("Click here to add a marker to the map!")
+            viewonmap.addClass("markerbutt");
+            temp.append(viewonmap);
             var divperformer = $("<div>");
             var performer;
             if (ajaxcall.events.event[i].performers) {
@@ -156,7 +131,34 @@ function checkIfExists(place) {
     count: count
     }
 }
-
+$(document).on("click",".markerbutt",function(){
+    var whichmark = parseInt($(this).attr("id"));
+    var eventLatLng = {
+            lat: parseFloat(ajaxcall.events.event[whichmark].latitude),
+            lng: parseFloat(ajaxcall.events.event[whichmark].longitude)
+        };
+    marker = new google.maps.Marker({
+            position: eventLatLng,
+            label: (whichmark+1).toString(),
+            map: map,
+            title: ajaxcall.events.event[whichmark].title,
+            markerid: whichmark,
+            infoWindow: new google.maps.InfoWindow({
+                content: "<div>"+ajaxcall.events.event[whichmark].title+"</div>"+"<div>"+ajaxcall.events.event[whichmark].description+"</div>"
+        })
+})
+    marker.addListener("click", function() {
+        var randomcolor = colorarray[s];
+        (this).set("label", "");
+        (this).infoWindow.open(map, this);
+        (this).setIcon('assets/images/' + randomcolor + ".png");
+        $("#" + (this).markerid).css("border", "5px solid " + randomcolor);
+        s++
+        if (s === colorarray.length) {
+            s = 0;
+        }
+    });
+})
 $(document).on("click",".spotify",function() {
     currArtist = $(this).text();
     // Running an initial search to identify the artist's unique Spotify id
