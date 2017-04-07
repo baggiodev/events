@@ -208,6 +208,7 @@ $(".submitBtn").click(function(){
     $(".popSearch").fadeIn(1150)
     $(".contentContainer").fadeIn(900);
 $(".sidebar").fadeIn(1350);
+$(".initial").hide();
         userlocation = $("#searchInput").val();
         console.log(userlocation);
         performerarray = [];
