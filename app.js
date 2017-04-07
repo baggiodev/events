@@ -21,9 +21,6 @@ $(".contentContainer").hide();
 $(".sidebar").hide();
 $(".popSearch").hide();
 function initMap(lat1, lng1) {
-        
-    console.log(lat1);
-    console.log(lng1);
     var myLatLng = {
         lat: lat1,
         lng: lng1
@@ -45,7 +42,7 @@ function initMap(lat1, lng1) {
             label: labels.toString(),
             map: map,
             title: ajaxcall.events.event[i].title,
-            testing: i,
+            markerid: i,
             infoWindow: new google.maps.InfoWindow({
                 content: "<div>"+ajaxcall.events.event[i].title+"</div>"+"<div>"+ajaxcall.events.event[i].description+"</div>"
         })
@@ -54,12 +51,10 @@ function initMap(lat1, lng1) {
             "Event Title: " + ajaxcall.events.event[i].title + "</div>"
         marker.addListener("click", function() {
             var randomcolor = colorarray[s];
-            console.log(randomcolor);
             (this).set("label", "");
             (this).infoWindow.open(map, this);
             (this).setIcon('assets/images/'+randomcolor+".png");
-            console.log((this).testing)
-            $("#"+(this).testing).css("border","5px solid "+ randomcolor);
+            $("#"+(this).markerid).css("border","5px solid "+ randomcolor);
             s++
             if(s===colorarray.length){
                 s=0;
@@ -79,8 +74,6 @@ $.ajax({
 }).done(function(response) {
     userlat = parseFloat(response.results[0].geometry.location.lat);
     userlng = parseFloat(response.results[0].geometry.location.lng);
-    console.log("userlat " + userlat);
-    console.log("userlng " + userlng);
     eventajax();
 });
 }
@@ -166,17 +159,12 @@ function checkIfExists(place) {
 
 $(document).on("click",".spotify",function() {
     currArtist = $(this).text();
-    console.log(currArtist);
     // Running an initial search to identify the artist's unique Spotify id
     var queryURL = "https://api.spotify.com/v1/search?q=" + currArtist + "&type=artist";
     $.ajax({
       url: queryURL,
       method: "GET"
     }).done(function(response) {
-
-      // Printing the entire object to console
-      console.log(response);
-
       // Printing the artist id from the Spotify object to console
       var artistID = response.artists.items[0].id;
 
@@ -189,9 +177,6 @@ $(document).on("click",".spotify",function() {
         method: "GET"
       }).done(function(trackResponse) {
 
-        // Logging the tracks
-        console.log(trackResponse);
-
         // Building a Spotify player playing the top song associated with the artist
         // (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
         var player = "<iframe src='https://embed.spotify.com/?uri=spotify:track:" +
@@ -199,7 +184,6 @@ $(document).on("click",".spotify",function() {
           "' frameborder='0' allowtransparency='true'></iframe>";
           currArtist = currArtist.replace( /\s/g, "");
         // Appending the new player into the HTML
-        console.log(currArtist);
         $("."+currArtist).append(player);
       });
     });
@@ -210,7 +194,6 @@ $(".submitBtn").click(function(){
 $(".sidebar").fadeIn(1350);
 $(".initial").hide();
         userlocation = $("#searchInput").val();
-        console.log(userlocation);
         performerarray = [];
         queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
         start();
