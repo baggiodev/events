@@ -112,8 +112,8 @@ function eventcall() {
             number.html(i+1);
             // displays start time
             var divstart = $("<div>");
-            var start = ajaxcall.events.event[i].start_time;
-            divstart.append("Start date and time: " + start);
+            var start = moment(ajaxcall.events.event[i].start_time).format("dddd, MMMM Do YYYY, h:mm:ss a");
+            divstart.append(start);
             temp.append(divstart);
             // grabs address and makes a div to put inside of temp
             var address = $("<div>");
