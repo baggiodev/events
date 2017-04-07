@@ -191,6 +191,7 @@ $(document).on("click",".spotify",function() {
         $("."+currArtist).append(player);
       });
     });
+    (this).remove();
 });
 $(".submitBtn").click(function(){
     $(".popSearch").fadeIn(1150)
