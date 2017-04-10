@@ -7,7 +7,7 @@ var config = {
     messagingSenderId: "422966048796"
 };
 firebase.initializeApp(config);
-var dataRef = firebase.database();
+
 var map;
 var ajaxcall;
 var performerarray = [];
@@ -17,7 +17,7 @@ var currArtist;
 var count = 1;
 var s = 0;
 var colorarray = ["orange","chocolate","white","yellow","maroon","grey"];
-// var cityRef = dataRef.child("places").child(city);
+var database = firebase.database();
 $(".contentContainer").hide();
 $(".sidebar").hide();
 $(".popSearch").hide();
@@ -126,15 +126,6 @@ function eventcall() {
     }
 }
 
-
-
-
-function checkIfExists(place) {
-    var cityCount = {
-    city: city,
-    count: count
-    }
-}
 //whenever a marker is clicked
 $(document).on("click",".markerbutt",function(){
     //remove button clicked
@@ -213,26 +204,28 @@ $(".initial").hide();
         performerarray = [];
         queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
         start();
-        var city = userlocation;
-        cityRef = dataRef.child("places").child(city);
-        cityRef.once('value', function(snapshot) {
-        if( snapshot.val() === null ) {
-            dataRef.ref("places").push({
-                city: city,
-                count: count
-            })
-        } else {
-            
-            count = snapshot.val().Count;
-            count++;
-            dataRef.ref("places").push({
-                City: city,
-                Count: count
-            })
-        }
-
+        database.ref().push({
+            cityName: userlocation,
+            dateAdded: firebase.database.ServerValue.TIMESTAMP
+        });
+        var first = true;
+        var wholeDiv = $("<div>");
+database.ref().orderByChild("dateAdded").limitToLast(5).on("child_added", function(snap) {
+   var pop = $("<button>");
+   pop.attr("class", "popinput");
+   pop.attr("id", snap.val().cityName);
+   pop.text(snap.val().cityName);
+   $(wholeDiv).prepend(pop);
+   console.log('new record', snap.val().cityName);
 });
-    })
+$(".popSearch").html(wholeDiv);
+    });
+$(document).on("click",".popinput",function() {
+    userlocation = $(this).attr("id");
+    performerarray = [];
+    queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
+    start();
+});
 window.onload = function() {
 
 
