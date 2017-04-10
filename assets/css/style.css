@@ -16,12 +16,13 @@ header {
 	z-index: 50;
 	margin: auto;
 	padding: 10px 0;
+	border-bottom: 3px solid #966661;
 }
 
 header h1 {
 	color: #fff;
 	font-size: 2.4em;
-	margin: 4px 0px 0px 7.5vw;
+	margin: 5px 0px 0px 7.5vw;
 	display: inline-block;
 }
 
@@ -49,7 +50,7 @@ body {
 	border-radius: 3px;
 	height: 20px;
 	margin-left: 10px;
-	width: 235px;
+	width: 300px;
 	background-color: #966661;
 	color: #fff;
 	border-color: #fff;
@@ -87,7 +88,7 @@ input:focus {
 	position: relative;
 	background-color: #000;
 	position: fixed;
-	background-image: url("../images/background2.jpeg");
+	background-image: url("../images/background.jpeg");
 	background-size: 100% 100%;
 }
 
@@ -107,7 +108,7 @@ input:focus {
 .contentContainer {
 	background-color: #330902;
 	width: 50vw;
-	height: 83.5vh;
+	height: 85%;
 	display: inline-block;
 	margin: 0px 2px 0px 8vw;
 	border-radius: 5px;
@@ -176,9 +177,8 @@ button:focus {
 /* Google Maps sidebar */
 
 .sidebar {
-	background-color: #330902;
 	width: 30vw;
-	height: 55vh;
+	height: 86vh;
 	float: right;
 	display: inline-block;
 	margin: 0px 8vw 0px 2px;
@@ -188,10 +188,10 @@ button:focus {
 	color: #afafaf;
 }
 
-
 #map{
-	height: 100%;
+	height: 325px;
 	width: 100%;
+	margin-bottom: 20px;
 }
 
 /* Popular search bottom sidebar */
@@ -202,10 +202,7 @@ button:focus {
 	display: inline-block;
 	border-radius: 5px;
 	background-color: #330902;
-	top: -26%;
 	position: relative;
-	float: right;
-	margin: 0px 8vw 0px 2px;
 	color: #fff;
 }
 
@@ -218,6 +215,7 @@ footer {
 	bottom: 0;
 	position: fixed;
 	z-index: 50;
+	border-top: 3px solid #966661;
 }
 
 footer p {
@@ -226,4 +224,138 @@ footer p {
 	color: #fff;
 	margin-top: 17px;
 	margin-bottom: auto;
+}
+
+
+
+/*============Media Queries Medium 768px===================*/
+
+@media screen and (max-width: 768px) {
+
+	header {	
+		height: 45px;
+		background-color: #330902;
+		position: fixed;
+		top: 0px;
+		z-index: 50;
+		margin: auto;
+		padding: 9px 0;
+		border-bottom: 2px solid #966661;
+	}
+
+	header h1 {
+		color: #fff;
+		font-size: 2.1em;
+		margin: 6px 0px 0px 7.5vw;
+		display: inline-block;
+	}
+
+	#searchField {	
+		margin: 12px 8vw 0px 0px;
+	}
+
+	#searchField .submitBtn {
+		height: 25px;
+	}
+
+	#searchInput {
+
+		height: 18px;
+		margin-left: 10px;
+		width: 275px;
+	}
+
+	.container {
+		margin-top: 65px;
+		background-image: url("../images/background760.jpeg");
+	}
+
+	.initial {
+		width: 260px;
+		font-size: 1.3em;
+		padding: 15px;
+		margin: 145px auto;
+	}
+
+	.contentContainer {
+
+		width: 45vw;
+		height: 85%;
+		margin: 0px 2px 0px 8vw;
+	}
+
+/* Spotify Buttons/Event headings */
+
+	.contentContainer button {
+		height: 25px;
+	}
+
+	footer {
+		height: 45px;
+		border-top: 2px solid #966661;
+	}
+
+	footer p {
+		font-size: .8em;
+		margin-top: 17px;
+	}
+
+}
+
+
+
+/*============Media Queries Small 640px====================*/
+
+@media screen and (max-width: 640px) {
+
+	header {	
+		height: 40px;
+		padding: 8px 0;
+		border-bottom: 2px solid #966661;
+	}
+
+	header h1 {
+		font-size: 1.7em;
+		margin: 5px 0px 0px 7.5vw;
+	}
+	
+	#searchField {	
+		margin: 9px 8vw 0px 0px;
+	}
+
+	#searchField .submitBtn {
+		height: 22px;
+	}
+
+	#searchInput {
+		height: 16px;
+		margin-left: 10px;
+		width: 250px;
+	}
+
+	.container {
+		margin-top: 57px;
+		background-image: url("../images/background640.jpeg");
+	}
+
+	.initial {
+		width: 240px;
+		font-size: 1.2em;
+		padding: 15px;
+		margin: 145px auto;
+	}
+
+	footer {
+		height: 40px;
+		border-top: 2px solid #966661;
+	}
+
+	footer p {
+		text-align: center;
+		font-size: .8em;
+		color: #fff;
+		margin-top: 13px;
+		margin-bottom: auto;
+	}
+
 }
