@@ -85,9 +85,9 @@ function eventcall() {
             var divaddress = ajaxcall.events.event[i].venue_address;
             address.html("Address: " + divaddress + "<p>Venue: " + ajaxcall.events.event[i].venue_name);
             temp.append(address);
-            var viewonmap = $("<button>");
+            var viewonmap = $("<button></button><br>");
             viewonmap.attr("id",i);
-            viewonmap.text("Click here to add a marker to the map!")
+            viewonmap.text("Locate on map!")
             viewonmap.addClass("markerbutt");
             temp.append(viewonmap);
             var divperformer = $("<div>");
@@ -99,7 +99,7 @@ function eventcall() {
                     performer = performer.name;
                     temp.addClass(performer.replace( /\s/g, ""));
                     divperformer.html("Performer: " + performer);
-                    var button = $("<button class='spotify'>" + performer + "</button>");
+                    var button = $("<button class='spotify'>" + performer + "</button>" + " - Sample MP3" + "<br>");
                     button.attr("data-performer", performer)
                     temp.append(button);
                 }
@@ -107,7 +107,7 @@ function eventcall() {
                 if (Array.isArray(performer)) {
                     for (var n = 1; n < performer.length; n++) {
                         performerarray.push("<p>Performer: " + performer[n].name + "</p>");
-                        var button = $("<button class='spotify'>" + performer[n].name + "</button>");
+                        var button = $("<button class='spotify'>" + performer[n].name + "</button><br>");
                         button.attr("data-performer", performer[n].name)
                         temp.addClass((performer[n].name).replace( /\s/g, ""));
                         temp.append(button);
@@ -196,9 +196,10 @@ $(document).on("click",".spotify",function() {
     (this).remove();
 });
 $(".submitBtn").click(function(){
-    $(".popSearch").fadeIn(1150)
+    $(".popSearch").fadeIn(1350)
     $(".contentContainer").fadeIn(900);
-$(".sidebar").fadeIn(1350);
+    $("#map").fadeIn();
+$(".sidebar").show();
 $(".initial").hide();
         userlocation = $("#searchInput").val();
         performerarray = [];
@@ -211,7 +212,7 @@ $(".initial").hide();
         var first = true;
         var wholeDiv = $("<div>");
 database.ref().orderByChild("dateAdded").limitToLast(5).on("child_added", function(snap) {
-   var pop = $("<button>");
+   var pop = $("<button></button><br>");
    pop.attr("class", "popinput");
    pop.attr("id", snap.val().cityName);
    pop.text(snap.val().cityName);

@@ -10,6 +10,7 @@
 		<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
 		<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 	</head>
+	<!-- Header -->
 	<header>
 		<h1>"Brand"</h1>
 		<div id="searchField">
@@ -17,35 +18,35 @@
 			<input type="text" id="searchInput" name="search" placeholder="City..">	
 		</div>
 	</header>
+<!-- Body -->
 	<body>
 		<div class="container">
 			<div class="initial">
 				<h1>Find live music in your city!</h1>
-			</div> `
-			<div class="contentContainer">				
+			</div> 
+<!-- Events Container -->
+			<div class="contentContainer">			
 				<div class="events">
 				</div>
 			</div>
-			
-
-
-
+<!-- Sidebar and Recent Searches Containers -->
 			<div class="sidebar">
 				<div id="map">
 				</div>
-				<div class="popSearch">
+				<div class="searchContainer">
+					<h2>Recent Searches</h2>
+					<div class="popSearch">
+						<h2>Recent Searches</h2>
+					</div>
 				</div>
 			</div>	
-			
-		
-
-
-
 		</div>
 	</body>
+<!-- Footer -->
 	<footer>	
 		<p>&copy; "Brand" 2017</p>
 	</footer>
+<!-- JS Sources -->
 	<script src="app.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc"
     async defer></script>
