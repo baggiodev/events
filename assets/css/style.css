@@ -217,7 +217,7 @@ button:focus {
 
 .searchContainer {
 	width: 30vw;
-	height: 30vh;
+	height: 200px;
 	display: block;
 	border-radius: 5px;
 	background-color: #330902;
@@ -299,7 +299,7 @@ footer p {
 
 		height: 18px;
 		margin-left: 10px;
-		width: 275px;
+		width: 225px;
 	}
 
 	.container {
@@ -315,11 +315,24 @@ footer p {
 	}
 
 	.contentContainer {
-
+		font-size: .8em;
 		width: 45vw;
 		height: 85%;
 		margin: 0px 2px 0px 8vw;
 	}
+
+	h2 {
+		font-size: 1.2em;
+		color: #fdd308;
+		margin: 20px 0px 15px 0px;
+	}
+	
+	#map{
+		height: 290px;
+		width: 100%;
+		margin-bottom: 20px;
+	}
+
 
 /* Spotify Buttons/Event headings */
 
@@ -367,12 +380,19 @@ footer p {
 	#searchInput {
 		height: 16px;
 		margin-left: 10px;
-		width: 250px;
+		width: 165px;
 	}
 
 	.container {
 		margin-top: 57px;
 		background-image: url("../images/background640.jpeg");
+	}
+
+	.contentContainer {
+		font-size: .7em;
+		width: 45vw;
+		height: 85%;
+		margin: 0px 2px 0px 8vw;
 	}
 
 	.initial {
@@ -381,6 +401,20 @@ footer p {
 		padding: 15px;
 		margin: 145px auto;
 	}
+
+	#map{
+		height: 235px;
+		width: 100%;
+		margin-bottom: 20px;
+	}
+
+
+	h2 {
+		font-size: 1.1em;
+		color: #fdd308;
+		margin: 20px 0px 15px 0px;
+	}
+
 
 	footer {
 		height: 40px;
