@@ -104,7 +104,7 @@ function eventajax() {
 					performer = performer.name;
 					temp.addClass(performer.replace(/\s/g, ""));
 					divperformer.html("Performer: " + performer);
-					var button = $("<button class='spotify'>" + performer + "</button>" + " - Sample MP3" + "<br>");
+					var button = $("<button class='spotify'>" + performer + "</button>" + "<br>");
 					button.attr("data-performer", performer)
 					temp.append(button);
 				}

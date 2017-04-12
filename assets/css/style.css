@@ -208,7 +208,7 @@ button:focus {
 }
 
 #map{
-	height: 325px;
+	height: 275px;
 	width: 100%;
 	margin-bottom: 20px;
 }
@@ -217,24 +217,23 @@ button:focus {
 
 .searchContainer {
 	width: 30vw;
-	height: 200px;
+	height: 180px;
 	display: block;
 	border-radius: 5px;
 	background-color: #330902;
 	position: relative;
 	color: #fff;
-	overflow: hidden;
 	overflow: auto;
 }
 
 .searchContainer h2 {
 	text-align: center;
-	margin: 15px 0px 15px 0px;
+	margin: 13px 0px 15px 0px;
 }
 
 .searchContainer button {
 	display: block;
-	margin: -8px auto;
+	margin: -10px auto;
 }
 
 h2 {
@@ -321,6 +320,14 @@ footer p {
 		margin: 0px 2px 0px 8vw;
 	}
 
+	.markerbutt {
+		height: 23px;
+	}
+
+	.sidebar {
+		width: 35vw;
+	}
+
 	h2 {
 		font-size: 1.2em;
 		color: #fdd308;
@@ -328,16 +335,26 @@ footer p {
 	}
 	
 	#map{
-		height: 290px;
+		height: 225px;
 		width: 100%;
 		margin-bottom: 20px;
+	}
+
+	.searchContainer {
+		width: 35vw;
+		height: 165px;
 	}
 
 
 /* Spotify Buttons/Event headings */
 
+	.popSearch button{
+		font-size: .9em;
+	}
+
+
 	.contentContainer button {
-		height: 25px;
+		height: 23px;
 	}
 
 	footer {
@@ -349,7 +366,6 @@ footer p {
 		font-size: .8em;
 		margin-top: 17px;
 	}
-
 }
 
 
@@ -389,11 +405,24 @@ footer p {
 	}
 
 	.contentContainer {
-		font-size: .7em;
+		font-size: .8em;
 		width: 45vw;
 		height: 85%;
 		margin: 0px 2px 0px 8vw;
 	}
+
+	.sidebar {
+		width: 35vw;
+	}
+
+	.markerbutt {
+		height: 21px;
+	}
+
+	.contentContainer button {
+		height: 22px;
+	}
+
 
 	.initial {
 		width: 240px;
@@ -403,16 +432,24 @@ footer p {
 	}
 
 	#map{
-		height: 235px;
+		height: 195px;
 		width: 100%;
 		margin-bottom: 20px;
 	}
 
+	.searchContainer {
+		width: 35vw;
+		height: 145px;
+	}
 
 	h2 {
 		font-size: 1.1em;
 		color: #fdd308;
 		margin: 20px 0px 15px 0px;
+	}
+
+	.popSearch button{
+		font-size: .7em;
 	}
 
 
@@ -426,5 +463,4 @@ footer p {
 		color: #fff;
 		margin-top: 13px;
 	}
-
 }
