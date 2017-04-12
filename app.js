@@ -127,7 +127,7 @@ function eventajax() {
 			temp.append(divperformer);
 			mainDiv.append(temp);
 		}
-        //writes content to main div
+		//writes content to main div
 		$(".contentContainer").html(mainDiv);
 	}
 }
@@ -203,20 +203,20 @@ $(document).on("click", ".spotify", function() {
 });
 //when user clicks on submit button
 $(".submitBtn").click(function() {
-    //take the divs we hid and fade them in
+	//take the divs we hid and fade them in
 	$(".popSearch").fadeIn(1350)
 	$(".contentContainer").fadeIn(900);
 	$("#map").fadeIn();
 	$(".sidebar").show();
-    //hides the div they see
+	//hides the div they see
 	$(".initial").hide();
-    //takes the location the user inputed
+	//takes the location the user inputed
 	userlocation = $("#searchInput").val();
 	performerarray = [];
-    //sets the queryURL we use in start
+	//sets the queryURL we use in start
 	queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCvEv7FKUz87tJJ1WOrg2hvzEiKqRp80Yc";
 	start();
-    //pushes to the database
+	//pushes to the database
 	database.ref().push({
 		cityName: userlocation,
 		dateAdded: firebase.database.ServerValue.TIMESTAMP
