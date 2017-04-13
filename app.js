@@ -55,7 +55,7 @@ function start() {
 
 function eventajax() {
 	//ajax call for eventful to grab JSON
-	eventurl = "http://api.eventful.com/json/events/search?q=music&app_key=GCqrsqLnPhVxFkQD&location=" + userlocation
+	eventurl = "https://api.eventful.com/json/events/search?q=music&app_key=GCqrsqLnPhVxFkQD&location=" + userlocation
 	$.ajax({
 		url: eventurl,
 		method: "GET",
